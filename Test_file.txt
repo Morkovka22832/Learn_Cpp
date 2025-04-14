@@ -1,1 +1,61 @@
-Даня лох
+// UsProject.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
+
+#include <iostream>
+#include <vector>
+#include <windows.h>
+#include <string>
+#include <format>
+
+void GameInput () {
+    SetConsoleOutputCP(CP_UTF8);
+    int line, col;
+    bool errorInput = true;
+    std::cout << "Введите строку и стобец\n" ;
+    while (errorInput) {
+        if (std::cin>>line >> col) {
+            if (line > 3 || line <1 || col <1 || col >3){
+                std::cout << "Повторите ввод\n";
+                continue;
+            }
+        }
+        errorInput = false;
+
+
+        //std::cout << line << " " << col << std::endl;
+    }
+}
+
+auto GameRestart (int line, int col) {
+    return std::vector<std::vector<std::string>>(line, std::vector<std::string>(col, "*"));
+}
+
+void const FieldPrint ( std::vector<std::vector<std::string>> field){
+    std::cout << std::format("{}|{}|{}", field[0][0],field[0][1],field[0][2]);
+    std::cout << "\n";
+    std::cout << std::format("{}|{}|{}", field[1][0],field[1][1],field[1][2]);
+    std::cout << "\n";
+    std::cout << std::format("{}|{}|{}", field[2][0],field[2][1],field[2][2]);
+
+    for (auto& line : field){
+        for (auto& col : line) {
+        }
+        std::cout << std::endl;
+    }
+
+
+  //  _|_|_
+  //  _|_|_
+  //   | |
+
+
+}
+
+int main()
+{
+    std::vector<std::vector<std::string>> field = GameRestart(3,3);
+    FieldPrint(field);
+    GameInput();
+
+
+}
